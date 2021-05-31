@@ -219,35 +219,6 @@
                                     <p class="info">
                                         <strong>7391034285</strong>
                                     </p>
-                                    <img src="img/bankdki-logo.png" class="logo mb-2">
-                                    <p class="info">
-                                        Muhammad Zaid Taqy
-                                    </p>
-                                    <p class="info">
-                                        <strong>50223999754</strong>
-                                    </p>
-                                    <img src="img/gopay.png" class="logo mb-2">
-                                    <p class="info">
-                                        Muhammad Zaid Taqy
-                                    </p>
-                                    <p class="info">
-                                        <strong>
-                                            <router-link to="/gopay">
-                                                <a class="scan-me">scan me</a>
-                                            </router-link>
-                                        </strong>
-                                    </p>
-                                    <img src="img/ovo.png" class="logo mb-2">
-                                    <p class="info">
-                                        Muhammad Zaid Taqy
-                                    </p>
-                                    <p class="info">
-                                        <strong>
-                                            <router-link to="/ovo">
-                                                <a class="scan-me">scan me</a>
-                                            </router-link>
-                                        </strong>
-                                    </p>
                                     <div class="mt-4">
                                         <router-link to="/success">
                                             <a @click="paymentSuccess()" href="#" class="proceed-btn">saya sudah bayar</a>
