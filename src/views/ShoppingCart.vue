@@ -63,7 +63,8 @@
                                 <form>
                                     <div class="form-group">
                                         <label for="namaLengkap">Nama lengkap</label>
-                                        <input 
+                                        <input
+                                        required 
                                         type="text" 
                                         class="form-control" 
                                         id="namaLengkap" 
@@ -73,7 +74,8 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="namaLengkap">Alamat Email</label>
-                                        <input 
+                                        <input
+                                        required 
                                         type="email" 
                                         class="form-control" 
                                         id="emailAddress" 
@@ -83,7 +85,8 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="namaLengkap">No. HP/Whatsapp</label>
-                                        <input 
+                                        <input
+                                        required
                                         type="text" 
                                         class="form-control" 
                                         id="noHP" 
@@ -92,28 +95,24 @@
                                         v-model="customerInfo.number">
                                     </div>
                                     <div class="form-group">
-                                        <label for="wilayahPengiriman">Cek ongkir ke Kota/Kab : (Moelaikeun Delivery)</label> <br>
-                                        <select v-model.number="selected">
-                                            <option value=10000>Kota Jakarta Barat</option>
-                                            <option value=10000>Kota Jakarta Pusat</option>
-                                            <option value=10000>Kota Jakarta Selatan</option>
-                                            <option value=10000>Kota Jakarta Timur</option>
-                                            <option value=10000>Kota Jakarta Utara</option>
-                                            <option value=10000>Kab. Kepulauan Seribu</option>
-                                            <option value=10000>Kota Bogor</option>
-                                            <option value=10000>Kab. Bogor</option>
-                                            <option value=10000>Kota Depok</option>
-                                            <option value=10000>Kota Tangerang</option>
-                                            <option value=10000>Kota Tangerang Selatan</option>
-                                            <option value=10000>Kab. Tangerang</option>
+                                        <label>Pengiriman ke</label> <br>
+                                        <select 
+                                        required
+                                        v-model.number="selected">
+                                            <option value=70000>Jakarta Barat</option>
+                                            <option value=50000>Jakarta Pusat</option>
+                                            <option value=65000>Jakarta Selatan</option>
+                                            <option value=60000>Jakarta Timur</option>
+                                            <option value=45000>Jakarta Utara</option>
                                             <option value=10000>Kota Bekasi</option>
-                                            <option value=10000>Kab. Bekasi</option>
+                                            <option value=30000>Kab. Bekasi</option>
                                         </select>
                                         <span> Rp {{ selected | numFormat}}</span> 
                                     </div>
                                     <div class="form-group">
                                         <label for="alamatLengkap">Alamat Lengkap</label>
                                         <textarea 
+                                        required
                                         class="form-control" 
                                         id="alamatLengkap" 
                                         rows="3"
@@ -121,13 +120,32 @@
                                         v-model="customerInfo.address">
                                         </textarea>
                                     </div>
-                                    <a @click="checkout()" class="btn first">Submit</a>
+                                    <div class="form-group">
+                                        <label>Upload Bukti Pembayaran</label>
+                                        <div v-if="!customerInfo.proof">
+                                            <input 
+                                                required
+                                                v-on="customerInfo.proof"
+                                                type="file"
+                                                ref="fileInput" 
+                                                accept="image/*" 
+                                                @change="onChange" 
+                                            />
+                                        </div>
+                                        <div v-else>
+                                            <img class="img" :src="customerInfo.proof" /> <br>
+                                            <button class="btn-remove" @click="removeImage">Hapus gambar</button>
+                                        </div>
+                                    </div>
+
+                                    <a @click="checkout()" class="btn first">order</a>
+
                                     <div class="form-group">
                                         <h5 class="header-title">
                                             Informasi penting
                                         </h5>
                                         <li>
-                                            Isi informasi diatas dengan lengkap, apabila belum lengkap / data tidak sesuai maka data anda tidak akan terkirim ke database kami dan orderan tidak akan masuk.
+                                            Isi informasi diatas dengan lengkap, apabila belum lengkap / data tidak sesuai maka orderan tidak akan masuk.
                                         </li>
                                         <li>
                                             Akan ada kode unik pada jumlah transfer pesanan anda, maka pastikan transfer sesuai dengan total transfer yang tertera.
@@ -214,16 +232,11 @@
                                     </h5>
                                     <img src="img/bca-logo.png" class="logo mb-2">
                                     <p class="info">
-                                        Muhammad Zaid Taqy
+                                        a.n. Muhammad Zaid Taqy
                                     </p>
                                     <p class="info">
                                         <strong>7391034285</strong>
                                     </p>
-                                    <div class="mt-4">
-                                        <router-link to="/success">
-                                            <a @click="paymentSuccess()" href="#" class="proceed-btn">saya sudah bayar</a>
-                                        </router-link>
-                                    </div>
                                 </ul>
                             </div>
                         </div>
@@ -254,7 +267,8 @@ export default {
               name: '',
               email: '',
               number: '',
-              address: ''
+              address: '',
+              proof: '',
           },
           selected: ''
       };
@@ -265,6 +279,14 @@ export default {
     this.keranjangUser.splice(index, 1);
     const parsed = JSON.stringify(this.keranjangUser);
     localStorage.setItem('keranjangUser', parsed);
+    },
+    onChange(e) {
+      const file = e.target.files[0]
+      this.image = file
+      this.customerInfo.proof = URL.createObjectURL(file)
+    },
+    removeImage: function() {
+      this.customerInfo.proof = '';
     },
 
     // fungsi mengirim data ke API
@@ -279,6 +301,7 @@ export default {
             'email': this.customerInfo.email,
             'number': this.customerInfo.number,
             'address': this.customerInfo.address,
+            'proof': this.customerInfo.proof,
             "transaction_total": this.totalBiaya,
             "transaction_status": "PENDING",
             "transaction_details": productIds
@@ -286,26 +309,19 @@ export default {
 
         axios
         .post("http://127.0.0.1:8000/api/checkout", checkoutData)
-        .then(() => this.$router(
-            Swal.fire({
+        .then(() => 
+            this.$router.push('success', 
+                Swal.fire({
                 position: 'top-center',
                 type: 'success',
-                title: 'Data berhasil terkirim!',
-                text: 'Silahkan segera lakukan pembayaran.',
+                title: 'Order Berhasil!',
                 showConfirmButton: true,
             })
-        )) 
+            )
+        ) 
         // eslint-disable-next-line no-console
         .catch(err => console.log(err));
       },
-
-      paymentSuccess(){
-        Swal.fire(
-            'Order berhasil',
-            'Simpan bukti pembayaran anda',
-            'success'
-        )
-      }
     },
     mounted() {
       if (localStorage.getItem('keranjangUser')) {
@@ -342,6 +358,14 @@ export default {
 .img-cart {
     weight: 100px;
     height: 100px;
+}
+.img {
+    weight: 200px;
+    height: 200px;
+}
+.btn-remove {
+    font-size: 10px;
+    border: 1px solid #383d41;;
 }
 .logo {
     height: 35px;
@@ -408,8 +432,9 @@ export default {
   font-size: 1rem;
   font-weight: 400;
   line-height: 1;
-  padding: 0.5em 0.8em;
-  margin-bottom: 1em;
+  padding: 10px 212px ;
+  margin-top: 10px;
+  margin-bottom: 25px;
   text-decoration: none;
   text-align: center;
   text-transform: uppercase;

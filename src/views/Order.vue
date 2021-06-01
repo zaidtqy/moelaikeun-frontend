@@ -32,17 +32,21 @@
                                 </div>
                                 <div class="pd-desc">
                                         1. Buka website Moelaikeun. <br>
-                                        2. Pada tampilan produk, ada beberapa pilihan untuk anda pesan. Apabila anda mau melihat detail produk nya anda bisa klik <b>+ Lihat Produk</b>. Maka akan ada detail produk nya seperti apa dan anda dapat memesannya sesuai dengan apa yang anda inginkan. <br>
-                                        3. Apabila ingin membeli produk, klik <b>logo tas belanja</b> disamping tulisan ‘+ Lihat Produk’. <br>
-                                        4. Produk akan masuk kedalam keranjang belanjaan. <br>
-                                        5. Pada keranjang belanjaan klik <b>CHECKOUT</b>. <br>
-                                        6. List belanjaan anda akan masuk kedalam halaman Checkout, setelah itu masukkan informasi anda (seperti nama, email, telp/WA, Alamat Lengkap, dll). Klik tombol <b>Submit</b>, apabila berhasil maka data akan masuk kedalam database kami. Dan jika data tidak sesuai / informasi ada yang kurang maka data tidak akan terkirim.<br>
-                                        7. <b>Lakukan pembayaran</b> dengan menggunakan beberapa metode yang tersedia yaitu <b>Bank BCA, Bank DKI, Gopay, dan OVO</b>. Anda dapat transfer ke bank tertera atau dapat scan dengan menggunakan <b>Gopay</b> / <b>OVO</b> dengan klik <b>scan me</b>. <br>
-                                        8. <b>Pastikan transfer sesuai dengan total transfer yang telah ditambahkan kode unik</b>. <br>
-                                        9. Ketika anda sudah bayar, klik tombol <b>SAYA SUDAH BAYAR</b>. <br>
-                                        10. Kami akan proses pesanan anda apabila pembayaran anda sudah masuk ke rekening kami. Apabila pembayaran belum masuk dalam 1 x 24 jam, maka pesanan akan kami anggap gagal. <br><br>
+                                        2. Pada tampilan produk, pilih makanan yang anda inginkan. Klik <b>+ Lihat Produk</b> untuk melihat detail dari produk kami. <br>
+                                        3. Apabila anda ingin membeli produk, klik <b>logo tas belanja</b> disamping tulisan ‘+ Lihat Produk’. <br>
+                                        4. Produk akan masuk kedalam keranjang belanjaan. Klik <b>CHECKOUT</b> untuk melanjutkan proses belanja. <br>
+                                        5. Masukkan informasi anda (seperti nama, email, telp/WA, Kota tujuan, Alamat Lengkap, dll). <br>
+                                        6. Lakukan pembayaran dengan transfer ke rekening bank yang tertera. <br>
+                                        7. <b>Pastikan transfer sesuai dengan total transfer yang telah ditambahkan kode unik</b>. <br>
+                                        8. Ketika anda sudah bayar, simpan bukti pembayarannya dan upload pada form pengisian data. Jika form sudah lengkap, tekan <b>submit</b> <br>
+                                        9. Jika pengisian data sudah benar dan sesuai, maka orderan berhasil dibuat dan tunggu orderan anda sampai dirumah ^_^! <br><br>
                                         <b>Perhatian!</b><br>
-                                        Pengiriman akan dilakukan di hari yang sama (Same Day) dengan waktu kerja Senin - Jum'at pukul 14:00. Apabila anda melakukan transaksi di atas jam tersebut, maka pengiriman akan dilakukan esok harinya.<br>
+                                        <li>
+                                            Pengiriman akan dilakukan di hari yang sama (Same Day) dengan waktu kerja Senin - Jum'at pukul 14:00. Apabila anda melakukan transaksi di atas jam tersebut, maka pengiriman akan dilakukan esok harinya.<br>
+                                        </li>
+                                        <li>
+                                            Toko kami buka setiap Senin - Minggu pukul 08:00-20:00 WIB. Dengan begitu anda juga dapat membelinya dengan datang langsung ke toko kami. Lihat alamat kami <a class="bantuan" target="_blank" href="https://www.google.co.id/maps/place/6%C2%B014'19.5%22S+107%C2%B000'56.3%22E/@-6.2388707,107.0154654,18.9z/data=!4m6!3m5!1s0x2e698e9a535cc763:0x56fa1a2ce644a9d3!7e2!8m2!3d-6.2387413!4d107.0156349">disini</a>
+                                        </li> <br>
                                         Butuh bantuan pemesanan? <a target="blank" href="https://api.whatsapp.com/send?phone=6285711068225&text=Halo%20kak!%20Saya%20butuh%20bantuan%20mengenai%20pemesanan" class="bantuan">klik disini</a>
                                 </div>
                             </div>
