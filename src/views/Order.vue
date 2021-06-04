@@ -35,14 +35,17 @@
                                         2. Pada tampilan produk, pilih makanan yang anda inginkan. Klik <b>+ Lihat Produk</b> untuk melihat detail dari produk kami. <br>
                                         3. Apabila anda ingin membeli produk, klik <b>logo tas belanja</b> disamping tulisan ‘+ Lihat Produk’. <br>
                                         4. Produk akan masuk kedalam keranjang belanjaan. Klik <b>CHECKOUT</b> untuk melanjutkan proses belanja. <br>
-                                        5. Masukkan informasi anda (seperti nama, email, telp/WA, Kota tujuan, Alamat Lengkap, dll). <br>
+                                        5. Masukkan informasi anda (seperti nama, email, telp/WA, Pilih Kurir, Kota tujuan, Alamat Lengkap, dll). <br>
                                         6. Lakukan pembayaran dengan transfer ke rekening bank yang tertera. <br>
                                         7. <b>Pastikan transfer sesuai dengan total transfer yang telah ditambahkan kode unik</b>. <br>
-                                        8. Ketika anda sudah bayar, simpan bukti pembayarannya dan upload pada form pengisian data. Jika form sudah lengkap, tekan <b>submit</b> <br>
+                                        8. Ketika anda sudah bayar, simpan bukti pembayarannya dan upload pada form pengisian data. Jika form sudah lengkap, tekan <b>ORDER</b> <br>
                                         9. Jika pengisian data sudah benar dan sesuai, maka orderan berhasil dibuat dan tunggu orderan anda sampai dirumah ^_^! <br><br>
                                         <b>Perhatian!</b><br>
                                         <li>
-                                            Pengiriman akan dilakukan di hari yang sama (Same Day) dengan waktu kerja Senin - Jum'at pukul 14:00. Apabila anda melakukan transaksi di atas jam tersebut, maka pengiriman akan dilakukan esok harinya.<br>
+                                            Demi menjaga kualitas produk kami, maka pengiriman hanya dapat dilakukan disekitaran daerah JABODETABEK.<br>
+                                        </li>
+                                        <li>
+                                            Pengiriman akan dilakukan di hari yang sama (Same Day) dengan waktu kerja Senin - Jum'at pukul 12:00. Apabila anda melakukan transaksi di atas jam tersebut, maka pengiriman akan dilakukan esok harinya.<br>
                                         </li>
                                         <li>
                                             Toko kami buka setiap Senin - Minggu pukul 08:00-20:00 WIB. Dengan begitu anda juga dapat membelinya dengan datang langsung ke toko kami. Lihat alamat kami <a class="bantuan" target="_blank" href="https://www.google.co.id/maps/place/6%C2%B014'19.5%22S+107%C2%B000'56.3%22E/@-6.2388707,107.0154654,18.9z/data=!4m6!3m5!1s0x2e698e9a535cc763:0x56fa1a2ce644a9d3!7e2!8m2!3d-6.2387413!4d107.0156349">disini</a>

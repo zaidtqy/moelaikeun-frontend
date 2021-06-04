@@ -10,7 +10,7 @@
                         <div class="col-lg-5">
                             <h1>Happy Shopping!</h1>
                             <p>
-                                Selamat datang di website resmi Moelaikeun, anda dapat memesan produk kami secara online melalui situs ini. Dan kami menawarkan ongkir FLAT ke Kota anda!  
+                                Selamat datang di website resmi Moelaikeun, anda dapat memesan produk kami secara online melalui situs ini!  
                             </p>
                             <router-link to="/order">
                             <a href="#" class="primary-btn">Cara Order</a>

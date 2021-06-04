@@ -4,8 +4,6 @@ import Home from '../views/Home.vue'
 import Product from '../views/Product.vue'
 import ShoppingCart from '../views/ShoppingCart.vue'
 import Success from '../views/Success.vue'
-import Gopay from '../views/Gopay.vue'
-import Ovo from '../views/Ovo.vue'
 import Order from '../views/Order.vue'
 
 Vue.use(VueRouter)
@@ -39,16 +37,6 @@ const routes = [
     path: '/success',
     name: 'success',
     component: Success
-  },
-  {
-    path: '/gopay',
-    name: 'gopay',
-    component: Gopay
-  },
-  {
-    path: '/ovo',
-    name: 'ovo',
-    component: Ovo
   },
   {
     path: '/order',

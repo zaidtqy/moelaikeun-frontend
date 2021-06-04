@@ -95,19 +95,28 @@
                                         v-model="customerInfo.number">
                                     </div>
                                     <div class="form-group">
-                                        <label>Pengiriman ke</label> <br>
-                                        <select 
-                                        required
-                                        v-model.number="selected">
-                                            <option value=70000>Jakarta Barat</option>
-                                            <option value=50000>Jakarta Pusat</option>
-                                            <option value=65000>Jakarta Selatan</option>
-                                            <option value=60000>Jakarta Timur</option>
-                                            <option value=45000>Jakarta Utara</option>
-                                            <option value=10000>Kota Bekasi</option>
-                                            <option value=30000>Kab. Bekasi</option>
+                                        <label>Kurir Same Day (Jabodetabek)</label> <br>
+                                        <select v-model.number="customerInfo.shipFee">
+                                            <option disabled value=" ">Pilih Kurir</option>
+                                            <option v-for="shipFee in couriers" :key="shipFee" :value="shipFee.value">{{ shipFee.label }}</option>
                                         </select>
-                                        <span> Rp {{ selected | numFormat}}</span> 
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Kota Tujuan</label> <br>
+                                        <select v-model="selectCity" @change="selectedCity">
+                                            <option disabled value=" ">Pilih Kota/Kab</option>
+                                            <option v-for="(city,index) in cities" :key="index" :value="index">{{ city.label }}</option>
+                                        </select>
+                                        &nbsp;
+                                        <select v-model="customerInfo.district" v-if="selectCity != -1">
+                                            <option disabled value=" ">Pilih Kecamatan</option>
+                                            <option v-for="option in cities[selectCity].options" :key="option">{{ option }}</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <p v-if="customerInfo.district">
+                                            Pengiriman ke {{ customerInfo.district }}, {{ cities[selectCity].label }}. <br> Tarif Rp {{ customerInfo.shipFee | numFormat}}.
+                                        </p>
                                     </div>
                                     <div class="form-group">
                                         <label for="alamatLengkap">Alamat Lengkap</label>
@@ -269,22 +278,88 @@ export default {
               number: '',
               address: '',
               proof: '',
+              shipFee: '',
+              district:'',
           },
-          selected: ''
+          couriers:[
+              {
+                  label:"JNE",
+                  name:"JNE",
+                  value: 18000
+              },
+              {
+                  label:"SICEPAT",
+                  value: 15000
+              },
+              {
+                  label:"J&T",
+                  value: 20000
+              },
+              {
+                  label:"ANTERAJA",
+                  value: 16000
+              },
+          ],
+          cities:[
+            {
+                label:"Jakarta Utara",
+                options:["Cilincing","Kelapa Gading","Koja","Pademangan","Penjaringan","Tanjung Priok"]
+            },
+            {
+                label:"Jakarta Timur",
+                options:["Cakung","Cipayung","Ciracas","Duren Sawit","Jatinegara","Kramat Jati","Makasar","Matraman","Pasar Rebo","Pulo Gadung"]
+            },
+            {
+                label:"Jakarta Selatan",
+                options:["Cilandak","Jagakarsa","Kebayoran Baru","Kebayoran Lama","Mampang Prapatan","Pancoran","Pasar Minggu","Pesanggrahan","Setiabudi","Tebet"]
+            },
+            {
+                label:"Jakarta Barat",
+                options:["Cengkareng","Grogol Petamburan","Taman Sari","Tambora","Kebon Jeruk","Kalideres","Palmerah","Kembangan"]
+            },
+            {
+                label:"Kota Bogor",
+                options:["Bogor Barat","Bogor Selatan","Bogor Tengah","Bogor Timur","Bogor Utara","Tanah Sareal"]
+            },
+            {
+                label:"Kota Depok",
+                options:["Beji","Bojongsari","Cilodong","Cimanggis","Cinere","Cipayung","Limo","Pancoran Mas","Sawangan","Sukmajaya","Tapos"]
+            },
+            {
+                label:"Kota Tangerang",
+                options:["Batuceper","Benda","Cibodas","Ciledug","Cipondoh","Jatiuwung","Karangtengah","Karawaci","Larangan","Neglasari","Periuk","Pinang","Tangerang"]
+            },
+            {
+                label:"Kota Bekasi",
+                options:["Bantar Gebang","Bekasi Barat","Bekasi Selatan","Bekasi Timur","Bekasi Utara","Jatiasih","Jatisampurna","Medan Satria","Mustika Jaya","Pondok Gede","Pondok Melati","Rawalumbu"]
+            },
+            {
+                label:"Kab.Bekasi",
+                options:["Babelan","Bojongmangu","Cabangbungin","Cibarusah","Cibitung","Cikarang Barat","Cikarang Pusat","Cikarang Selatan","Cikarang Timur","Cikarang Utara","Karangbahagia","Kedungwaringin","Muara Gembong","Pebayuran","Serang Baru","Setu","Sukakarya","Sukatani","Sukawangi","Tambelang","Tambun Selatan","Tambun Utara","Tarumajaya"]
+            },
+        ],
+    selectCity:-1,
       };
     },
+    
     methods: {
+        
+    selectedCity() {
+    this.customerInfo.district = '';
+    },
 
     removeItem(index) {
     this.keranjangUser.splice(index, 1);
     const parsed = JSON.stringify(this.keranjangUser);
     localStorage.setItem('keranjangUser', parsed);
     },
+
     onChange(e) {
       const file = e.target.files[0]
       this.image = file
       this.customerInfo.proof = URL.createObjectURL(file)
     },
+
     removeImage: function() {
       this.customerInfo.proof = '';
     },
@@ -301,10 +376,12 @@ export default {
             'email': this.customerInfo.email,
             'number': this.customerInfo.number,
             'address': this.customerInfo.address,
-            'proof': this.customerInfo.proof,
             "transaction_total": this.totalBiaya,
             "transaction_status": "PENDING",
-            "transaction_details": productIds
+            "transaction_details": productIds,
+            'proof': this.customerInfo.proof,
+            'shipFee': this.customerInfo.shipFee,
+            'district': this.customerInfo.district
         };
 
         axios
@@ -320,7 +397,18 @@ export default {
             )
         ) 
         // eslint-disable-next-line no-console
-        .catch(err => console.log(err));
+        .catch(err => {
+            this.$route.push('cart',
+            Swal.fire({
+                position: 'top-center',
+                type: 'error',
+                title: 'Order Gagal!',
+                text: 'Pastikan data informasi pesanan anda sudah benar/lengkap.',
+                showConfirmButton: true,
+            })
+            );
+            console.log(err);
+        });
       },
     },
     mounted() {
@@ -344,7 +432,7 @@ export default {
           return uniqueCode;
       },
       ongkir() {
-          return this.selected;
+          return this.customerInfo.shipFee;
       },
       totalBiaya() {
           return this.totalHarga + this.kodeUnik + this.ongkir;
