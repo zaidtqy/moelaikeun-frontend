@@ -47,7 +47,7 @@
                                         Bermarkas di Bekasi Timur, untuk permulaan kami hanya dapat mengantarkan pesanan sekitaran Kota Bekasi.
                                     </p>
                                     <p>
-                                        Kami membuka PO untuk menu kami 1-4x sebulan via Instagram, Whatsapp, dan Line. Silahkan follow akun IG : @moelaikeun.id untuk perkembangan lebih lanjut.
+                                        Kami membuka pesanan untuk menu kami setiap hari. Pemesanan bisa dilakukan via Website, jika ada kendala bisa hubungi WhatsApp atau Line kami. Dan silahkan follow akun IG : @moelaikeun.id untuk perkembangan lebih lanjut.
                                     </p>
                                 </div>
                             </div>
@@ -59,7 +59,6 @@
     </section>
     <!-- Product Shop Section End -->
 
-    <RelatedMoelaikeun />
     <FooterMoelaikeun />
   </div>
 </template>
@@ -67,14 +66,12 @@
 <script>
 
 import HeaderMoelaikeun from "@/components/HeaderMoelaikeun.vue";
-import RelatedMoelaikeun from "@/components/RelatedMoelaikeun.vue";
 import FooterMoelaikeun from "@/components/FooterMoelaikeun.vue";
 
 export default {
   name: 'about',
   components: {
     HeaderMoelaikeun,
-    RelatedMoelaikeun,
     FooterMoelaikeun
   }
 }
