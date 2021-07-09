@@ -10,7 +10,7 @@
                 <div class="col-lg-12 text-left">
                     <div class="breadcrumb-text product-more">
                         <router-link to="/"><i class="fa fa-home"></i> Home</router-link>
-                        <span>Keranjang Belanja</span>
+                        <span>Checkout</span>
                     </div>
                 </div>
             </div>
@@ -87,7 +87,7 @@
                                         <label for="namaLengkap">No. HP/Whatsapp</label>
                                         <input
                                         required
-                                        type="text" 
+                                        type="number" 
                                         class="form-control" 
                                         id="noHP" 
                                         aria-describedby="noHPHelp" 
