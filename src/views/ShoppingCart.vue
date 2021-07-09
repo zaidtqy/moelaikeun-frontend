@@ -96,9 +96,9 @@
                                     </div>
                                     <div class="form-group">
                                         <label>Kurir Same Day (Jabodetabek)</label> <br>
-                                        <select v-model.number="customerInfo.shipFee">
+                                        <select v-model="customerInfo.courier">
                                             <option disabled value=" ">Pilih Kurir</option>
-                                            <option v-for="shipFee in couriers" :key="shipFee" :value="shipFee.value">{{ shipFee.label }}</option>
+                                            <option v-for="courier in couriers" :key="courier" :value="courier.label">{{ courier.label }}</option>
                                         </select>
                                     </div>
                                     <div class="form-group">
@@ -115,9 +115,19 @@
                                     </div>
                                     <div class="form-group">
                                         <p v-if="customerInfo.district">
-                                            Pengiriman ke {{ customerInfo.district }}, {{ cities[selectCity].label }}. <br> Tarif Rp {{ customerInfo.shipFee | numFormat}}.
+                                            Flat ongkir Rp 20,000 ke {{ customerInfo.district }}, {{ cities[selectCity].label }}.
                                         </p>
                                     </div>
+                                    <div class="form-group">
+                                        <label>Transfer Via</label> <br>
+                                        <select v-model="customerInfo.transfer">
+                                            <option disabled value=" ">Pilih Transfer</option>
+                                            <option v-for="transfer in transfers" :key="transfer">{{ transfer.label }}</option>
+                                        </select>
+                                    </div>
+                                    <p v-if="customerInfo.transfer">
+                                            Transfer ke {{ customerInfo.transfer }}
+                                        </p>
                                     <div class="form-group">
                                         <label for="alamatLengkap">Alamat Lengkap</label>
                                         <textarea 
@@ -128,23 +138,6 @@
                                         placeholder="nama jalan, nomor rumah, RT/RW, kelurahan, kecamatan, kota, provinsi, kode pos."
                                         v-model="customerInfo.address">
                                         </textarea>
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Upload Bukti Pembayaran</label>
-                                        <div v-if="!customerInfo.proof">
-                                            <input 
-                                                required
-                                                v-on="customerInfo.proof"
-                                                type="file"
-                                                ref="fileInput" 
-                                                accept="image/*" 
-                                                @change="onChange" 
-                                            />
-                                        </div>
-                                        <div v-else>
-                                            <img class="img" :src="customerInfo.proof" /> <br>
-                                            <button class="btn-remove" @click="removeImage">Hapus gambar</button>
-                                        </div>
                                     </div>
 
                                     <a @click="checkout()" class="btn first">order</a>
@@ -211,7 +204,7 @@
                                     </div>
                                     <div class="item">
                                         <p class="title">
-                                            Ongkir
+                                            Flat Ongkir
                                         </p>
                                         <p class="value">
                                             Rp {{ ongkir | numFormat }}
@@ -246,6 +239,20 @@
                                     <p class="info">
                                         <strong>7391034285</strong>
                                     </p>
+                                    <img src="img/dki-logo.png" class="logo mb-2">
+                                    <p class="info">
+                                        a.n. Muhammad Zaid Taqy
+                                    </p>
+                                    <p class="info">
+                                        <strong>50223999754</strong>
+                                    </p>
+                                    <img src="img/dana-logo.png" class="logo mb-2">
+                                    <p class="info">
+                                        a.n. Muhammad Zaid Taqy
+                                    </p>
+                                    <p class="info">
+                                        <strong>085779402511</strong>
+                                    </p>
                                 </ul>
                             </div>
                         </div>
@@ -277,29 +284,12 @@ export default {
               email: '',
               number: '',
               address: '',
-              proof: '',
-              shipFee: '',
+              courier: '',
               district:'',
+              transfer:'',
           },
-          couriers:[
-              {
-                  label:"JNE",
-                  name:"JNE",
-                  value: 18000
-              },
-              {
-                  label:"SICEPAT",
-                  value: 15000
-              },
-              {
-                  label:"J&T",
-                  value: 20000
-              },
-              {
-                  label:"ANTERAJA",
-                  value: 16000
-              },
-          ],
+          couriers:[{label:"JNE"},{label:"SICEPAT"},{label:"J&T"},{label:"ANTERAJA"},{label:"PAXEL"}],
+          transfers:[{label:"Bank BCA"},{label:"Bank DKI"},{label:"DANA"}],
           cities:[
             {
                 label:"Jakarta Utara",
@@ -379,9 +369,9 @@ export default {
             "transaction_total": this.totalBiaya,
             "transaction_status": "PENDING",
             "transaction_details": productIds,
-            'proof': this.customerInfo.proof,
-            'shipFee': this.customerInfo.shipFee,
-            'district': this.customerInfo.district
+            'courier': this.customerInfo.courier,
+            'district': this.customerInfo.district,
+            'transfer': this.customerInfo.transfer
         };
 
         axios
@@ -432,7 +422,7 @@ export default {
           return uniqueCode;
       },
       ongkir() {
-          return this.customerInfo.shipFee;
+          return 20000;
       },
       totalBiaya() {
           return this.totalHarga + this.kodeUnik + this.ongkir;

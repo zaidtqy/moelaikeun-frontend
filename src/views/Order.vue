@@ -38,8 +38,9 @@
                                         5. Masukkan informasi anda (seperti nama, email, telp/WA, Pilih Kurir, Kota tujuan, Alamat Lengkap, dll). <br>
                                         6. Lakukan pembayaran dengan transfer ke rekening bank yang tertera. <br>
                                         7. <b>Pastikan transfer sesuai dengan total transfer yang telah ditambahkan kode unik</b>. <br>
-                                        8. Ketika anda sudah bayar, simpan bukti pembayarannya dan upload pada form pengisian data. Jika form sudah lengkap, tekan <b>ORDER</b> <br>
-                                        9. Jika pengisian data sudah benar dan sesuai, maka orderan berhasil dibuat dan tunggu orderan anda sampai dirumah ^_^! <br><br>
+                                        8. Tekan <b>ORDER</b>, apabila pengisian form informasi pembeli sudah lengkap dan sesuai. <br>
+                                        9. Anda akan diarahkan ke halaman Order Berhasil. Dan silahkan lakukan konfirmasi pembayaran dengan mengirim bukti transfer dengan tekan tombol <b>Konfirmasi Pembayaran</b>. Namun, apabila tidak konfirmasi juga tidak akan menjadi masalah, karena kami akan cek secara manual pembayaran anda. <br>
+                                        10. Dengan begitu orderan berhasil dibuat, tekan gambar pada halaman Order Berhasil untuk kembali ke Halaman Utama dan kami siap untuk menerima pesanan anda selanjutnya ^_^! <br><br>
                                         <b>Perhatian!</b><br>
                                         <li>
                                             Demi menjaga kualitas produk kami, maka pengiriman hanya dapat dilakukan disekitaran daerah JABODETABEK.<br>
