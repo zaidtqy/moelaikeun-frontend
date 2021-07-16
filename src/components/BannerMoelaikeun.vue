@@ -67,7 +67,7 @@ export default {
     },
     mounted() {
         axios
-         .get("https://admin-moelaikeun.000webhostapp.com/api/products")
+         .get("http://127.0.0.1:8000/api/products")
          .then(res => (this.products = res.data.data.data))
          // eslint-disable-next-line no-console
          .catch(err => console.log(err));
