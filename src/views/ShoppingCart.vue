@@ -37,7 +37,7 @@
                                     <tbody>
                                         <tr v-for="keranjang in keranjangUser" :key="keranjang.id">
                                             <td class="cart-pic first-row">
-                                                <img class="img-cart" :src="keranjang.photo" alt="img/default-image.jpg" />
+                                                <img class="img-cart" :src="keranjang.photo" />
                                             </td>
                                             <td class="cart-title first-row text-center">
                                                 <h5>{{ keranjang.name }}</h5>
@@ -375,7 +375,7 @@ export default {
         };
 
         axios
-        .post("https://admin-moelaikeun.herokuapp.com/api/checkout", checkoutData)
+        .post("http://127.0.0.1:8000/api/checkout", checkoutData)
         .then(() => 
             this.$router.push('success', 
                 Swal.fire({

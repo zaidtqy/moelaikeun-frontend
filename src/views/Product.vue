@@ -26,7 +26,7 @@
                     <div class="row">
                         <div class="col-lg-6">
                             <div class="product-pic-zoom">
-                                <img class="product-big-img" :src="default_photo" alt="img/default-image.jpg" />
+                                <img class="product-big-img" :src="default_photo" alt="" />
                             </div>
                             <div class="product-thumbs" v-if="productDetails.galleries.length > 0">
                                 <carousel :dots="false" :nav="false" class="product-thumbs-track ps-slider">
@@ -122,7 +122,7 @@ export default {
           }
         }
         axios
-         .get("https://admin-moelaikeun.herokuapp.com/api/products", {
+         .get("http://127.0.0.1:8000/api/products", {
              params: {
                  id: this.$route.params.id
              }

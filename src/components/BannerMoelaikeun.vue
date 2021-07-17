@@ -8,7 +8,7 @@
 
                         <div class="product-item" v-for="itemProduct in products" v-bind:key="itemProduct.id">
                             <div class="pi-pic">
-                                <img v-bind:src="itemProduct.galleries[0].photo" alt="img/default-image.jpg" />
+                                <img v-bind:src="itemProduct.galleries[0].photo" alt="" />
                                 <ul>
                                     <li @click="saveKeranjang(itemProduct.id, itemProduct.name, itemProduct.price, itemProduct.galleries[0].photo)" class="w-icon active">
                                         <a href="#">
@@ -67,7 +67,7 @@ export default {
     },
     mounted() {
         axios
-         .get("https://admin-moelaikeun.herokuapp.com/api/products")
+         .get("http://127.0.0.1:8000/api/products")
          .then(res => (this.products = res.data.data.data))
          // eslint-disable-next-line no-console
          .catch(err => console.log(err));
