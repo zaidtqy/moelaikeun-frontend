@@ -8,7 +8,7 @@
 
                         <div class="product-item" v-for="itemProduct in products" v-bind:key="itemProduct.id">
                             <div class="pi-pic">
-                                <img v-bind:src="itemProduct.galleries[0].photo" alt="" />
+                                <img v-bind:src="itemProduct.galleries[0].photo" alt="img/default-image.jpg" />
                                 <ul>
                                     <li @click="saveKeranjang(itemProduct.id, itemProduct.name, itemProduct.price, itemProduct.galleries[0].photo)" class="w-icon active">
                                         <a href="#">

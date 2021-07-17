@@ -26,7 +26,7 @@
                     <div class="row">
                         <div class="col-lg-6">
                             <div class="product-pic-zoom">
-                                <img class="product-big-img" :src="default_photo" alt="" />
+                                <img class="product-big-img" :src="default_photo" alt="img/default-image.jpg" />
                             </div>
                             <div class="product-thumbs" v-if="productDetails.galleries.length > 0">
                                 <carousel :dots="false" :nav="false" class="product-thumbs-track ps-slider">
