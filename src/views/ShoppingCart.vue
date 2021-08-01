@@ -9,8 +9,8 @@
             <div class="row">
                 <div class="col-lg-12 text-left">
                     <div class="breadcrumb-text product-more">
-                        <router-link to="/"><i class="fa fa-home"></i> Home</router-link>
-                        <span>Checkout</span>
+                        <router-link to="/"><i class="fa fa-home"></i> Beranda</router-link>
+                        <span>Keranjang Belanja</span>
                     </div>
                 </div>
             </div>
@@ -95,13 +95,23 @@
                                         v-model="customerInfo.number">
                                     </div>
                                     <div class="form-group">
-                                        <label>Kurir Same Day (Jabodetabek)</label> <br>
-                                        <select v-model="customerInfo.courier">
+                                        <label>Pengiriman</label> <br>
+                                        <select v-model="selectCourier" @change="selectedCourier">
+                                            <option disabled value=" ">Pilih Jenis</option>
+                                            <option v-for="(courier,index) in couriers" :key="index" :value="index">{{ courier.label }}</option>
+                                        </select>
+                                        &nbsp;
+                                        <select v-model="customerInfo.courier" v-if="selectCourier != -1">
                                             <option disabled value=" ">Pilih Kurir</option>
-                                            <option v-for="courier in couriers" :key="courier" :value="courier.label">{{ courier.label }}</option>
+                                            <option v-for="option in couriers[selectCourier].options" :key="option">{{ option }}</option>
                                         </select>
                                     </div>
                                     <div class="form-group">
+                                        <p v-if="customerInfo.courier">
+                                            {{couriers[selectCourier].info}}
+                                        </p>
+                                    </div>
+                                    <!-- <div class="form-group">
                                         <label>Kota Tujuan</label> <br>
                                         <select v-model="selectCity" @change="selectedCity">
                                             <option disabled value=" ">Pilih Kota/Kab</option>
@@ -112,10 +122,22 @@
                                             <option disabled value=" ">Pilih Kecamatan</option>
                                             <option v-for="option in cities[selectCity].options" :key="option">{{ option }}</option>
                                         </select>
+                                    </div> -->
+                                    <!-- <div class="form-group">
+                                        <p v-if="customerInfo.district">
+                                            Pengiriman ke {{ customerInfo.district }}, {{ cities[selectCity].label }}. Ongkir Rp {{ cities[selectCity].ongkir | numFormat}}
+                                        </p>
+                                    </div> -->
+                                    <div class="form-group">
+                                        <label>Kota Tujuan</label> <br>
+                                        <select v-model.number="customerInfo.fee" @change="selectedCity">
+                                            <option disabled value=" ">Pilih Kota/Kab</option>
+                                            <option v-for="biaya in cities" :key="biaya" :value="biaya.fee">{{ biaya.label }}</option>
+                                        </select>
                                     </div>
                                     <div class="form-group">
-                                        <p v-if="customerInfo.district">
-                                            Flat ongkir Rp 20,000 ke {{ customerInfo.district }}, {{ cities[selectCity].label }}.
+                                        <p v-if="customerInfo.fee">
+                                            Ongkir Rp {{ customerInfo.fee | numFormat}}
                                         </p>
                                     </div>
                                     <div class="form-group">
@@ -150,7 +172,7 @@
                                             Isi informasi diatas dengan lengkap, apabila belum lengkap / data tidak sesuai maka orderan tidak akan masuk.
                                         </li>
                                         <li>
-                                            Akan ada kode unik pada jumlah transfer pesanan anda, maka pastikan transfer sesuai dengan total transfer yang tertera.
+                                            Pastikan transfer pembayaran terlebih dahulu sebelum menekan tombol ORDER, lalu simpan bukti pembayaran anda dan lakukan konfirmasi pembayaran ke admin Moelaikeun.
                                         </li>
                                     </div>
                                     <div class="form-group">
@@ -204,22 +226,14 @@
                                     </div>
                                     <div class="item">
                                         <p class="title">
-                                            Flat Ongkir
+                                            Ongkir
                                         </p>
                                         <p class="value">
                                             Rp {{ ongkir | numFormat }}
                                         </p>
                                         <div class="clear"></div>
                                     </div>
-                                    <div class="item">
-                                        <p class="title">
-                                            Kode unik
-                                        </p>
-                                        <p class="valueSpecial">
-                                           + Rp {{ kodeUnik }}
-                                        </p>
-                                        <div class="clear"></div>
-                                    </div>
+                                    <hr>
                                     <div class="item">
                                         <p class="title">
                                             Total transfer
@@ -229,6 +243,7 @@
                                         </p>
                                         <div class="clear"></div>
                                     </div>
+                                    <hr>
                                     <h5 class="header-title">
                                         Transfer pembayaran
                                     </h5>
@@ -285,50 +300,71 @@ export default {
               number: '',
               address: '',
               courier: '',
-              district:'',
               transfer:'',
+              fee:'',
           },
-          couriers:[{label:"JNE"},{label:"SICEPAT"},{label:"J&T"},{label:"ANTERAJA"},{label:"PAXEL"}],
+          couriers:[
+              {
+                  label:"Same Day",
+                  options:["ANTERAJA","PAXEL"]             
+              },
+              {
+                  label:"Instant",
+                  options:["GOJEK","GRAB"],
+                  info:"Jenis pengiriman Instant tidak menjangkau wilayah Bogor."       
+              }
+          ],
           transfers:[{label:"Bank BCA"},{label:"Bank DKI"},{label:"DANA"}],
           cities:[
             {
                 label:"Jakarta Utara",
-                options:["Cilincing","Kelapa Gading","Koja","Pademangan","Penjaringan","Tanjung Priok"]
+                // options:["Cilincing","Kelapa Gading","Koja","Pademangan","Penjaringan","Tanjung Priok"],
+                fee:72000
             },
             {
                 label:"Jakarta Timur",
-                options:["Cakung","Cipayung","Ciracas","Duren Sawit","Jatinegara","Kramat Jati","Makasar","Matraman","Pasar Rebo","Pulo Gadung"]
+                // options:["Cakung","Cipayung","Ciracas","Duren Sawit","Jatinegara","Kramat Jati","Makasar","Matraman","Pasar Rebo","Pulo Gadung"],
+                fee:55800
+
             },
             {
                 label:"Jakarta Selatan",
-                options:["Cilandak","Jagakarsa","Kebayoran Baru","Kebayoran Lama","Mampang Prapatan","Pancoran","Pasar Minggu","Pesanggrahan","Setiabudi","Tebet"]
+                //options:["Cilandak","Jagakarsa","Kebayoran Baru","Kebayoran Lama","Mampang Prapatan","Pancoran","Pasar Minggu","Pesanggrahan","Setiabudi","Tebet"],
+                fee:75200
             },
             {
                 label:"Jakarta Barat",
-                options:["Cengkareng","Grogol Petamburan","Taman Sari","Tambora","Kebon Jeruk","Kalideres","Palmerah","Kembangan"]
+                //options:["Cengkareng","Grogol Petamburan","Taman Sari","Tambora","Kebon Jeruk","Kalideres","Palmerah","Kembangan"],
+                fee:91875
             },
             {
                 label:"Kota Bogor",
-                options:["Bogor Barat","Bogor Selatan","Bogor Tengah","Bogor Timur","Bogor Utara","Tanah Sareal"]
+                //options:["Bogor Barat","Bogor Selatan","Bogor Tengah","Bogor Timur","Bogor Utara","Tanah Sareal"],
+                fee:50500
             },
             {
                 label:"Kota Depok",
-                options:["Beji","Bojongsari","Cilodong","Cimanggis","Cinere","Cipayung","Limo","Pancoran Mas","Sawangan","Sukmajaya","Tapos"]
+                //options:["Beji","Bojongsari","Cilodong","Cimanggis","Cinere","Cipayung","Limo","Pancoran Mas","Sawangan","Sukmajaya","Tapos"],
+                fee:96611
             },
             {
                 label:"Kota Tangerang",
-                options:["Batuceper","Benda","Cibodas","Ciledug","Cipondoh","Jatiuwung","Karangtengah","Karawaci","Larangan","Neglasari","Periuk","Pinang","Tangerang"]
+                //options:["Batuceper","Benda","Cibodas","Ciledug","Cipondoh","Jatiuwung","Karangtengah","Karawaci","Larangan","Neglasari","Periuk","Pinang","Tangerang"],
+                fee:108000
             },
             {
                 label:"Kota Bekasi",
-                options:["Bantar Gebang","Bekasi Barat","Bekasi Selatan","Bekasi Timur","Bekasi Utara","Jatiasih","Jatisampurna","Medan Satria","Mustika Jaya","Pondok Gede","Pondok Melati","Rawalumbu"]
+                //options:["Bantar Gebang","Bekasi Barat","Bekasi Selatan","Bekasi Timur","Bekasi Utara","Jatiasih","Jatisampurna","Medan Satria","Mustika Jaya","Pondok Gede","Pondok Melati","Rawalumbu"],
+                fee:27250
             },
             {
                 label:"Kab.Bekasi",
-                options:["Babelan","Bojongmangu","Cabangbungin","Cibarusah","Cibitung","Cikarang Barat","Cikarang Pusat","Cikarang Selatan","Cikarang Timur","Cikarang Utara","Karangbahagia","Kedungwaringin","Muara Gembong","Pebayuran","Serang Baru","Setu","Sukakarya","Sukatani","Sukawangi","Tambelang","Tambun Selatan","Tambun Utara","Tarumajaya"]
+                //options:["Babelan","Bojongmangu","Cabangbungin","Cibarusah","Cibitung","Cikarang Barat","Cikarang Pusat","Cikarang Selatan","Cikarang Timur","Cikarang Utara","Karangbahagia","Kedungwaringin","Muara Gembong","Pebayuran","Serang Baru","Setu","Sukakarya","Sukatani","Sukawangi","Tambelang","Tambun Selatan","Tambun Utara","Tarumajaya"],
+                fee:56347
             },
         ],
     selectCity:-1,
+    selectCourier:-1,
       };
     },
     
@@ -337,21 +373,14 @@ export default {
     selectedCity() {
     this.customerInfo.district = '';
     },
+    selectedCourier() {
+    this.customerInfo.courier = '';
+    },
 
     removeItem(index) {
     this.keranjangUser.splice(index, 1);
     const parsed = JSON.stringify(this.keranjangUser);
     localStorage.setItem('keranjangUser', parsed);
-    },
-
-    onChange(e) {
-      const file = e.target.files[0]
-      this.image = file
-      this.customerInfo.proof = URL.createObjectURL(file)
-    },
-
-    removeImage: function() {
-      this.customerInfo.proof = '';
     },
 
     // fungsi mengirim data ke API
@@ -367,21 +396,22 @@ export default {
             'number': this.customerInfo.number,
             'address': this.customerInfo.address,
             "transaction_total": this.totalBiaya,
-            "transaction_status": "PENDING",
+            "transaction_status": "TERTUNDA",
             "transaction_details": productIds,
             'courier': this.customerInfo.courier,
-            'district': this.customerInfo.district,
+            'fee': this.customerInfo.fee,
             'transfer': this.customerInfo.transfer
         };
 
         axios
-        .post("https://admin-moelaikeun.000webhostapp.com/api/checkout", checkoutData)
+        .post("https://admin.moelaikeun.online/api/checkout", checkoutData)
         .then(() => 
             this.$router.push('success', 
                 Swal.fire({
                 position: 'top-center',
                 type: 'success',
                 title: 'Order Berhasil!',
+                text: 'Pesanan diproses jika anda sudah mengirim bukti pembayaran. Silahkan konfirmasi pembayaran maksimal dalam 1 x 24 jam.',
                 showConfirmButton: true,
             })
             )
@@ -416,16 +446,11 @@ export default {
           return items + data.price;
         }, 0);
       },
-      kodeUnik() {
-          let uniqueCode = Math.floor( Math.random()*500 ) + 100 //3 digit
-
-          return uniqueCode;
-      },
       ongkir() {
-          return 20000;
+          return this.customerInfo.fee;
       },
       totalBiaya() {
-          return this.totalHarga + this.kodeUnik + this.ongkir;
+          return this.totalHarga + this.ongkir;
             
       }
     }

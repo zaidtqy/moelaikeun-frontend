@@ -67,7 +67,7 @@
                     </div>
                     <div class="select-button">
                       <a href="#" class="primary-btn checkout-btn">
-                        <router-link to="/cart" style="color: #FFF;">CHECKOUT</router-link>
+                        <router-link to="/cart" style="color: #FFF;">Lanjut Bayar</router-link>
                       </a>
                     </div>
                   </div>

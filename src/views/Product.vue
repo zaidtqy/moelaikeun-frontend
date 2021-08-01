@@ -122,7 +122,7 @@ export default {
           }
         }
         axios
-         .get("https://admin-moelaikeun.000webhostapp.com/api/products", {
+         .get("http://127.0.0.1:8000/api/products", {
              params: {
                  id: this.$route.params.id
              }

@@ -8,7 +8,7 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-5">
-                            <h1>Happy Shopping!</h1>
+                            <h1>Selamat Berbelanja!</h1>
                             <p>
                                 Selamat datang di website resmi Moelaikeun, anda dapat memesan produk kami secara online melalui situs ini!  
                             </p>

@@ -9,7 +9,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="breadcrumb-text product-more">
-                        <router-link to="/"><i class="fa fa-home"></i> Home</router-link>
+                        <router-link to="/"><i class="fa fa-home"></i> Beranda</router-link>
                         <span>Tentang Kami</span>
                     </div>
                 </div>
